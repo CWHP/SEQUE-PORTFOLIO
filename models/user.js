@@ -1,29 +1,26 @@
-import mongoose from "mongoose";
+import DataTypes from "sequelize";
+import sequelize from "../utils/database.js";
 
-const userSchema = mongoose.Schema({
-  userName: {
-    type: String,
-    required: true,
-    unique: true,
+const User = sequelize.define(
+  "User",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+
+    userName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-
-  password: {
-    type: String,
-    required: true,
-  },
-});
-
-userSchema.statics.insertUser = async function ({ userName, password }) {
-  const user = new this({ userName, password });
-  console.log(user);
-  
-  return user.save();
-};
-
-userSchema.statics.fetchUserByUsername = async function (userName) {
-  return this.findOne({ userName });
-};
-
-const User = mongoose.model("User", userSchema, "users");
+  { tableName: "users", timestamps: false }
+);
 
 export default User;
