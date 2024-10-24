@@ -2,10 +2,10 @@ import Sequelize from "sequelize";
 
 const sequelize = new Sequelize({
   host: "localhost",
-  usename: "root",
+  usename: "postgres",
   database: "portfolio",
   password: "Jesus123!!",
-  port: 3306,
+  port: 5433,
   dialect: "postgres",
 });
 
