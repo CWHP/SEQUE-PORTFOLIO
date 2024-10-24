@@ -5,7 +5,7 @@ const Project = sequelize.define(
   "project",
   {
     id: {
-      type: DataTypes.INTERGER,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
       allowNull: false,

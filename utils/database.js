@@ -1,8 +1,8 @@
-import Sequelize from "sequelize";
+import { Sequelize } from "sequelize";
 
 const sequelize = new Sequelize({
   host: "localhost",
-  usename: "postgres",
+  username: "postgres",
   database: "portfolio",
   password: "Jesus123!!",
   port: 5433,
