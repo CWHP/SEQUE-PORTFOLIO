@@ -10,12 +10,12 @@ const Project = sequelize.define(
       primaryKey: true,
       allowNull: false,
     },
-    title: {
+    projectTitle: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    category: {
+    projectType: {
       type: DataTypes.STRING,
       allowNull: false,
     },

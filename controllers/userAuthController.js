@@ -18,7 +18,8 @@ export const login = async (req, res) => {
   try {
     User.fetchUserByUsername(userName).then((credentials) => {
       if (credentials) {
-        const isMatch = bcrypt.compare(password, credentials.password);
+        const hashPass = credentials[0].dataValues.password;
+        const isMatch = bcrypt.compare(password, hashPass);
         if (isMatch) {
           const token = JWT.sign({ userName }, tokenSignature);
           req.session.token = token;
