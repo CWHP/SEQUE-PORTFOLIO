@@ -3,7 +3,7 @@ import Project from "../models/project.js";
 /* PROJECT OVERVIEW */
 export const renderProject = async (req, res) => {
   try {
-    const projects = await Project.find();
+    const projects = await Project.findAll();
     res.render("home", { projects: projects, isLoggedIn: global.isLoggedIn });
   } catch (error) {
     console.error(error);
@@ -13,7 +13,7 @@ export const renderProject = async (req, res) => {
 
 export const renderEditProject = async (req, res) => {
   try {
-    const project = await Project.findById(req.params.id);
+    const project = await Project.findAndCountAll(req.params.id);
     if (project) {
       res.render("edit-project", {
         project: project,
@@ -34,7 +34,7 @@ export const editProject = async (req, res) => {
     const image = req.file.destination + "/" + req.file.filename;
     const id = req.params.id;
 
-    const project = await Project.findById(id);
+    const project = await Project.findByPk(id);
 
     if (!project) {
       return res.status(404).send("Not found");
@@ -82,7 +82,7 @@ export const addProject = async (req, res) => {
 
 export const deleteProject = async (req, res) => {
   try {
-    await Project.findByIdAndDelete(req.params.id);
+    await Project.destroy({ where: { id: req.params.id } });
     res.redirect("/");
   } catch (error) {
     console.error(error);
