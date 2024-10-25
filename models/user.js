@@ -23,4 +23,17 @@ const User = sequelize.define(
   { tableName: "users", timestamps: false }
 );
 
+User.insertUser = async ({ userName, password }) => {
+  await User.create({
+    userName: userName,
+    password: password,
+  });
+};
+
+User.fetchUserByUsername = async (userName) => {
+  return User.findAll({
+    where: { userName: userName },
+  });
+};
+
 export default User;
