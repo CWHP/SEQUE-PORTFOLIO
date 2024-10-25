@@ -10,8 +10,26 @@ import deleteProject from "./routes/deleteProject.js";
 import editDetail from "./routes/editDetail.js";
 import userAuth from "./routes/userAuth.js";
 import sequelize from "./utils/database.js";
+import connectSessionSequelize from "connect-session-sequelize";
+import session from "express-session";
 const app = express();
 const PORT = 3000;
+
+const SequelizeStore = connectSessionSequelize(session.Store);
+const sessionStore = new SequelizeStore({
+  db: sequelize,
+});
+
+sessionStore.sync();
+
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+  })
+);
 
 /* SETTING THE TEMPLATING ENGINE */
 app.set("view engine", "ejs");
