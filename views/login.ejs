@@ -14,63 +14,18 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
     <title>Login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/home.css" />
 
   </head>
   
-  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <body class="bg-gray-50 min-h-screen font-sans text-gray-800">
+    <%- include('./includes/navbar.ejs'), {isLoggedIn: isLoggedIn}%>
+
     <!-- Login Form -->
-    <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
-      <form action="/login" method="post">
-        <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
-        <div class="space-y-4">
-          <!-- Username Field -->
-          <div>
-            <label class="block text-lg font-semibold mb-1">
-              Username
-              <span class="text-sm text-gray-500 italic">(Email)</span>
-            </label>
-            <input
-              type="text"
-              name="userName"
-              class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-              placeholder="name@example.com"
-            />
-          </div>
+    <div class="bg-gray-100 min-h-screen flex items-center justify-center">
 
-          <!-- Password Field with Toggle -->
-          <div>
-            <label class="block text-lg font-semibold mb-1">Password</label>
-            <div class="relative">
-              <input
-                type="password"
-                name="password"
-                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                placeholder="Password"
-                id="passwordInp"
-              />
-              <div class="inset-y-0 right-3">
-              <i
-                class="bi bi-eye-slash"
-                name="confirmPasswordHidden"
-                onclick="toggleDisplay(this)"
-              ></i>
-            </div>
-            </div>
-          </div>
-
-          <!-- Login Button -->
-          <div>
-            <button
-              type="submit"
-              class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition-colors text-lg font-semibold"
-            >
-              Login
-            </button>
-          </div>
-        </div>
-      </form>
     </div>
+    
 
     <script>
       const toggleDisplay = (e) => {
