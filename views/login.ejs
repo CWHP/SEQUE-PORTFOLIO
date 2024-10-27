@@ -13,76 +13,78 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
-    <link rel="stylesheet" href="../css/add-project.css" />
-
     <title>Login</title>
+    <link rel="stylesheet" href="../css/home.css" />
+
   </head>
-  <body>
-    <%- include("./includes/navbar.ejs"), {isLoggedIn: isLoggedIn} %>
-    <div class="container-fluid mt-4 form-container">
-      <form class="w-25" action="/login" method="post">
-        <h2 class="fw-bold fs-3 m-4 mb-2">Login</h2>
-        <div class="form-control m-3 p-4">
-          <div class="row">
-            <div class="col-12 mt-2 mb-3">
-              <label class="form-label fs-4">
-                Username
-                <span class="fs-6 text-secondary fst-italic">(Email)</span>
-              </label>
-              <input
-                type="text"
-                name="userName"
-                class="form-control"
-                placeholder="name@example.com"
-              />
-            </div>
+  
+  <body class="bg-gray-50 min-h-screen font-sans text-gray-800">
+    <%- include('./includes/navbar.ejs'), {isLoggedIn: isLoggedIn}%>
+
+    <!-- Login Form -->
+    <div class="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
+      <form action="/login" method="post">
+        <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+        <div class="space-y-4">
+          <!-- Username Field -->
+          <div>
+            <label class="block text-lg font-semibold mb-1">
+              Username
+              <span class="text-sm text-gray-500 italic">(Email)</span>
+            </label>
+            <input
+              type="text"
+              name="userName"
+              class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              placeholder="name@example.com"
+            />
           </div>
-          <div class="row">
-            <label class="form-label fs-4"> Password</label>
-            <div class="col-10 mt-2 mb-3">
+
+          <!-- Password Field with Toggle -->
+          <div>
+            <label class="block text-lg font-semibold mb-1">Password</label>
+            <div class="relative">
               <input
                 type="password"
                 name="password"
-                class="form-control"
+                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
                 placeholder="Password"
                 id="passwordInp"
               />
-            </div>
-            <div class="mt-2 mb-3 col-2 btn">
+              <div class="inset-y-0 right-3">
               <i
                 class="bi bi-eye-slash"
-                name="passwordHidden"
+                name="confirmPasswordHidden"
                 onclick="toggleDisplay(this)"
               ></i>
             </div>
+            </div>
+          </div>
+
+          <!-- Login Button -->
+          <div>
+            <button
+              type="submit"
+              class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition-colors text-lg font-semibold"
+            >
+              Login
+            </button>
           </div>
         </div>
-        <button class="btn btn-primary fs-4 m-3 w-100" type="submit">
-          Login
-        </button>
       </form>
     </div>
+    </div>
+    
+
     <script>
-      let passwordInp = document.getElementById("passwordInp");
-      let confirmPasswordInp = document.getElementById("confirmPasswordInp");
-
       const toggleDisplay = (e) => {
-        let selectedToggle = e.getAttribute("name");
+        const passwordInput = document.getElementById("passwordInp");
+        const isHidden = e.getAttribute("name") === "passwordHidden";
 
-        switch (selectedToggle) {
-          case "passwordHidden":
-            passwordInp.type = "text";
-            e.className = "bi bi-eye";
-            e.setAttribute("name", "passwordVisible");
-            break;
-          case "passwordVisible":
-            passwordInp.type = "password";
-            e.className = "bi bi-eye-slash";
-            e.setAttribute("name", "passwordHidden");
-            break;
-          default:
-            break;
-        }
+        passwordInput.type = isHidden ? "text" : "password";
+        e.className = isHidden ? "bi bi-eye" : "bi bi-eye-slash";
+        e.setAttribute("name", isHidden ? "passwordVisible" : "passwordHidden");
       };
     </script>
   </body>
