@@ -16,80 +16,87 @@
     <title>Sign Up</title>
     <link rel="stylesheet" href="../css/home.css" />
   </head>
-  <body class="bg-gray-100 min-h-screen flex flex-col items-center">
+  <body class="bg-gray-50 min-h-screen font-sans text-gray-800">
     <%- include("./includes/navbar.ejs"), {isLoggedIn: isLoggedIn} %>
-
-    <div class="container mx-auto mt-8 p-4">
-      <form
-        class="max-w-md mx-auto bg-white shadow-md rounded-lg p-6 space-y-4"
-        action="/sign-up"
-        method="post"
-        onsubmit="return validatePassword()"
-      >
-        <h2 class="text-2xl font-bold text-gray-700 mb-4 text-center">Sign Up</h2>
-
-        <div class="space-y-2">
-          <label class="block text-lg font-medium text-gray-600">
-            Username <span class="text-sm text-gray-400">(Email)</span>
-          </label>
-          <input
-            type="text"
-            name="userName"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-            placeholder="name@example.com"
-          />
-        </div>
-
-        <div class="space-y-2">
-          <label class="block text-lg font-medium text-gray-600">Password</label>
-          <div class="flex items-center space-x-2">
-            <input
-              type="password"
-              name="password"
-              class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-              placeholder="Password"
-              id="passwordInp"
-            />
-            <button
-              type="button"
-              onclick="toggleDisplay(this)"
-              name="passwordHidden"
-              class="text-gray-500"
-            >
-              <i class="bi bi-eye-slash"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="space-y-2">
-          <label class="block text-lg font-medium text-gray-600">Confirm Password</label>
-          <div class="flex items-center space-x-2">
-            <input
-              type="password"
-              name="confirmPassword"
-              class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-              placeholder="Confirm Password"
-              id="confirmPasswordInp"
-            />
-            <button
-              type="button"
-              onclick="toggleDisplay(this)"
-              name="confirmPasswordHidden"
-              class="text-gray-500"
-            >
-              <i class="bi bi-eye-slash"></i>
-            </button>
-          </div>
-          <div id="helper-text" class="text-red-500 text-sm"></div>
-        </div>
-
-        <button
-          class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-500 transition-colors"
-          type="submit"
+    <div class="bg-gray-100 min-h-screen flex items-center justify-center">
+      <div class="container mx-auto mt-8 p-4">
+        <form
+          class="max-w-md mx-auto bg-white shadow-md rounded-lg p-6 space-y-4"
+          action="/sign-up"
+          method="post"
+          onsubmit="return validatePassword()"
         >
-          Sign Up
-        </button>
-      </form>
+          <h2 class="text-2xl font-bold text-gray-700 mb-4 text-center">
+            Sign Up
+          </h2>
+
+          <div class="space-y-2">
+            <label class="block text-lg font-medium text-gray-600">
+              Username <span class="text-sm text-gray-400">(Email)</span>
+            </label>
+            <input
+              type="text"
+              name="userName"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+              placeholder="name@example.com"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label class="block text-lg font-medium text-gray-600"
+              >Password</label
+            >
+            <div class="flex items-center space-x-2">
+              <input
+                type="password"
+                name="password"
+                class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                placeholder="Password"
+                id="passwordInp"
+              />
+              <button
+                type="button"
+                onclick="toggleDisplay(this)"
+                name="passwordHidden"
+                class="text-gray-500"
+              >
+                <i class="bi bi-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="block text-lg font-medium text-gray-600"
+              >Confirm Password</label
+            >
+            <div class="flex items-center space-x-2">
+              <input
+                type="password"
+                name="confirmPassword"
+                class="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                placeholder="Confirm Password"
+                id="confirmPasswordInp"
+              />
+              <button
+                type="button"
+                onclick="toggleDisplay(this)"
+                name="confirmPasswordHidden"
+                class="text-gray-500"
+              >
+                <i class="bi bi-eye-slash"></i>
+              </button>
+            </div>
+            <div id="helper-text" class="text-red-500 text-sm"></div>
+          </div>
+
+          <button
+              class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition-colors text-lg font-semibold"
+            type="submit"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
     </div>
 
     <script>
@@ -104,11 +111,17 @@
         if (inputField.type === "password") {
           inputField.type = "text";
           icon.classList.replace("bi-eye-slash", "bi-eye");
-          e.setAttribute("name", isPasswordHidden ? "passwordVisible" : "confirmPasswordVisible");
+          e.setAttribute(
+            "name",
+            isPasswordHidden ? "passwordVisible" : "confirmPasswordVisible"
+          );
         } else {
           inputField.type = "password";
           icon.classList.replace("bi-eye", "bi-eye-slash");
-          e.setAttribute("name", isPasswordHidden ? "passwordHidden" : "confirmPasswordHidden");
+          e.setAttribute(
+            "name",
+            isPasswordHidden ? "passwordHidden" : "confirmPasswordHidden"
+          );
         }
       };
 
@@ -117,7 +130,8 @@
           document.getElementById("helper-text").textContent = "";
           return true;
         } else {
-          document.getElementById("helper-text").textContent = "Passwords do not match";
+          document.getElementById("helper-text").textContent =
+            "Passwords do not match";
           return false;
         }
       };
