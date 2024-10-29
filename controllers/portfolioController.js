@@ -13,7 +13,7 @@ export const renderProject = async (req, res) => {
 
 export const renderEditProject = async (req, res) => {
   try {
-    const project = await Project.findAndCountAll(req.params.id);
+    const project = await Project.findByPk(req.params.id);
     if (project) {
       res.render("edit-project", {
         project: project,
