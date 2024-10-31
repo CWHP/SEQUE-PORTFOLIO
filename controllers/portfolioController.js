@@ -15,7 +15,7 @@ export const renderEditProject = async (req, res) => {
   try {
     const project = await Project.findByPk(req.params.id);
     if (project) {
-      res.render("edit-project", {
+      res.render("edit-article", {
         project: project,
         isLoggedIn: global.isLoggedIn,
       });
@@ -56,7 +56,7 @@ export const editProject = async (req, res) => {
 
 export const renderAddProject = (req, res) => {
   try {
-    res.render("add-project", { isLoggedIn: global.isLoggedIn });
+    res.render("add-article", { isLoggedIn: global.isLoggedIn });
   } catch (error) {
     console.error(error);
     res.status(500).redirect("/error");
