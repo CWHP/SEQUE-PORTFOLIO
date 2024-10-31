@@ -1,4 +1,4 @@
-import { renderProject } from "../controllers/portfolioController.js";
+import { renderProject } from "../controllers/blogController.js";
 import express from "express";
 
 const router = express.Router();

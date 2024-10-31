@@ -1,13 +1,12 @@
 import express from "express";
-import { editProject } from "../controllers/portfolioController.js";
-import { renderEditProject } from "../controllers/portfolioController.js";
+import { editArticle, renderEditArticle } from "../controllers/blogController.js";
 import bodyParser from "body-parser";
 
 const router = express.Router();
 
 router.use(bodyParser.urlencoded({extended: true}));
 
-router.get("/:id", renderEditProject);
-router.post("/:id", editProject);
+router.get("/:id", renderEditArticle);
+router.post("/:id", editArticle);
 
 export default router;

@@ -1,8 +1,8 @@
 import express from "express";
-import { deleteProject } from "../controllers/portfolioController.js";
+import { deleteArticle } from "../controllers/blogController.js";
 
 const router = express.Router();
 
-router.get("/:id", deleteProject);
+router.get("/:id", deleteArticle);
 
 export default router;

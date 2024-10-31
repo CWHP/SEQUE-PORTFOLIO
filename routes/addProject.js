@@ -1,11 +1,10 @@
 import express from "express";
-import { renderAddProject } from "../controllers/portfolioController.js";
-import { addProject } from "../controllers/portfolioController.js";
+import { renderAddArticle, addArticle} from "../controllers/blogController.js";
 
 const router = express.Router();
 router.use(express.urlencoded({ extended: true }));
 
-router.get("/", renderAddProject);
-router.post("/", addProject);
+router.get("/", renderAddArticle);
+router.post("/", addArticle);
 
 export default router;

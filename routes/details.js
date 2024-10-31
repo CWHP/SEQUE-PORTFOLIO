@@ -1,8 +1,8 @@
 import express from "express";
-import { renderProjectDetail } from "../controllers/portfolioController.js";
+import { renderArticleContent } from "../controllers/blogController.js";
 
 const router = express.Router();
 
-router.get("/", renderProjectDetail);
+router.get("/", renderArticleContent);
 
 export default router;
