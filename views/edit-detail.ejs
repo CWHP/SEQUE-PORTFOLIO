@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>article ? "Edit Article" : "Add Article"</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <!-- TinyMCE Editor Script -->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: "#content",
+        plugins: "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        toolbar_mode: "floating",
+        toolbar: "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat",
+        height: 300,
+      });
+    </script>
+  </head>
+  <body class="bg-gray-50 text-gray-800 font-sans">
+    <div class="container mx-auto my-8 p-6 max-w-4xl bg-white shadow-lg rounded-lg">
+      <h1 class="text-2xl font-bold text-center mb-6 text-blue-600">
+         article ? "Edit Article" : "Add New Article" 
+      </h1>
+      <form
+        action="article ? '/edit-article/' + article.id : '/add-article' "
+        method="POST"
+        enctype="multipart/form-data"
+        class="space-y-6"
+      >
+        <!-- Title -->
+        <div>
+          <label for="title" class="block font-semibold text-gray-700">Title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value=" article ? article.projectTitle : '' "
+            required
+          />
+        </div>
+
+        <!-- Category -->
+        <div>
+          <label for="category" class="block font-semibold text-gray-700">Category</label>
+          <select
+            name="category"
+            id="category"
+            class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          >
+            <option value="" disabled selected>Select Category</option>
+            <option value="Web Application"  article && article.projectType === "Web Application" ? "selected" : "" %>>Web Application</option>
+            <option value="Website" article && article.projectType === "Website" ? "selected" : "" %>>Website</option>
+            <option value="Mobile Application"  article && article.projectType === "Mobile Application" ? "selected" : "" %>>Mobile Application</option>
+            <option value="API"  article && article.projectType === "API" ? "selected" : "" %>>API</option>
+          </select>
+        </div>
+
+        <!-- Overview -->
+        <div>
+          <label for="overview" class="block font-semibold text-gray-700">Overview</label>
+          <textarea
+            name="overview"
+            id="overview"
+            rows="3"
+            class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          >article ? article.overview : '' %></textarea>
+        </div>
+
+        <!-- Image Upload -->
+        <div>
+          <label for="image" class="block font-semibold text-gray-700">Image</label>
+          <input
+            type="file"
+            name="image"
+            id="image"
+            class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <!-- Content (with TinyMCE WYSIWYG editor) -->
+        <div>
+          <label for="content" class="block font-semibold text-gray-700">Content</label>
+          <textarea
+            id="content"
+            name="content"
+            required
+          >article ? article.fullContent : '' %></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button
+            type="submit"
+            class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition"
+          >
+             article ? "Update Article" : "Add Article" %>
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
