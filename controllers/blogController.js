@@ -93,7 +93,7 @@ export const deleteArticle = async (req, res) => {
 /* ARTICLE CONTENT */
 export const renderArticleContent = async (req, res) => {
   try {
-    res.status(200).send("DetailPage");
+    res.render('detail');
   } catch (error) {
     console.error(error);
     res.status(500).redirect("/error");

@@ -36,11 +36,13 @@
             </h3>
             <p class="text-sm text-gray-500 mt-1"><%= project.projectType %></p>
             <p class="mt-2 text-gray-700 text-sm"><%= project.overview %></p>
-            <button
+
+            <a
+              href="/detail"
               class="flex justify-center mx-auto mt-4 bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 transition"
             >
               Read More
-            </button>
+            </a>
             <% if (isLoggedIn === "true") { %>
             <div class="flex space-x-2 mt-4">
               <a
